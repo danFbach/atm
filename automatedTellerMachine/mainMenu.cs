@@ -24,6 +24,7 @@ namespace automatedTellerMachine
                 case "w":
                 case "W":
                     int dollarsRequested;
+                    string dlrAmnt = inputData[1].Trim(' ');
                     bool pass = int.TryParse(inputData[1], out dollarsRequested);
                     if (pass)
                     {
