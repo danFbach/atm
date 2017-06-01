@@ -8,6 +8,7 @@ namespace automatedTellerMachine
 {
     public class printUtil
     {
+        #region vars
         public string blue = "blue";
         public string drkblue = "darkblue";
         public string cyan = "cyan";
@@ -24,10 +25,10 @@ namespace automatedTellerMachine
         public string drkYlw = "darkyellow";
         public string wht = "white";
         public string blk = "black";
-
         /// LINE FORMATTING
         public string br = "\n\r ";
-
+        #endregion vars
+        #region actions
         public void rest(int time)
         {
             Thread.Sleep(time);
@@ -47,7 +48,6 @@ namespace automatedTellerMachine
             pickColor(color);
             Console.Write(_input);
         }
-
         public string rl(string _input, string colorOUT, string colorIN)
         {
             ///RESET BACKGROUND TO BLACK IF BLACK FOREGROUND IS CHOSEN AT ANY POINT
@@ -91,6 +91,8 @@ namespace automatedTellerMachine
                 return returnData;
             }
         }
+        #endregion actions
+        #region colorPicker
         public void pickColor(string color)
         {
             switch (color)
@@ -152,6 +154,7 @@ namespace automatedTellerMachine
                     break;
             }
         }
+        #endregion colorPicker
         public void proceed()
         {
             Console.ReadKey();
