@@ -1,0 +1,6 @@
+c:\users\dan dcc\documents\visual studio 2015\Projects\automatedTellerMachine\automatedTellerMachine\bin\Debug\automatedTellerMachine.exe.config
+c:\users\dan dcc\documents\visual studio 2015\Projects\automatedTellerMachine\automatedTellerMachine\bin\Debug\automatedTellerMachine.exe
+c:\users\dan dcc\documents\visual studio 2015\Projects\automatedTellerMachine\automatedTellerMachine\bin\Debug\automatedTellerMachine.pdb
+c:\users\dan dcc\documents\visual studio 2015\Projects\automatedTellerMachine\automatedTellerMachine\obj\Debug\automatedTellerMachine.csprojResolveAssemblyReference.cache
+c:\users\dan dcc\documents\visual studio 2015\Projects\automatedTellerMachine\automatedTellerMachine\obj\Debug\automatedTellerMachine.exe
+c:\users\dan dcc\documents\visual studio 2015\Projects\automatedTellerMachine\automatedTellerMachine\obj\Debug\automatedTellerMachine.pdb
