@@ -16,7 +16,7 @@ namespace automatedTellerMachine
 
         public void main()
         {
-            string input = p.rl("\n\r" + "Enter Command: ", p.wht, p.blue);
+            string input = p.rl("\n\r" + "Enter Command: ", p.wht, p.drkGray);
             string[] inputData = input.Split('$');
             string command = inputData[0].Trim(' ');
             switch (command)
@@ -30,6 +30,10 @@ namespace automatedTellerMachine
                     {
                         makeWithdrawal(dollarsRequested);
                     }
+                    else
+                    {
+                        p.write("Invalid format or not a dollar amount.", p.red);
+                    }
                     main();
                     return;
                 case "i":
@@ -41,7 +45,16 @@ namespace automatedTellerMachine
                         bool _pass = int.TryParse(curDollar, out dollarValue);
                         if (_pass)
                         {
-                            checkInventory(dollarValue);
+                            if(dollarAmounts.Contains(dollarValue))
+                            {
+                                checkInventory(dollarValue);
+                            }
+                            else
+                            {
+                                p.write("\n\rFailure: ", p.red);
+                                p.write("$" + dollarValue.ToString(), p.grn);
+                                p.write(" is not a denomination.", p.red);
+                            }
                         }
                     }
                     main();
@@ -55,6 +68,7 @@ namespace automatedTellerMachine
                 case "Q":
                     break;
                 default:
+                    p.write("Failure: Invalid Command", p.red);
                     main();
                     return;
             }
@@ -67,7 +81,8 @@ namespace automatedTellerMachine
         public void checkInventory(int dollarValue)
         {
             int qty = atmInventory.Where(x => x.dollarValue == dollarValue).Count();
-            p.write("\n\r" + "$" + dollarValue + " - " + qty.ToString(), p.grn);
+            p.write("\n\r" + "$" + dollarValue, p.grn);
+            p.write(" - " + qty.ToString(), p.drkGray);
         }
         public void makeWithdrawal(int dollarsRequested)
         {
@@ -107,14 +122,18 @@ namespace automatedTellerMachine
             }
             else
             {
-                p.write("Success: Dispensed $" + dollarsRequested.ToString(), p.grn);
+                p.write("\n\rSuccess: ", p.grn);
+                p.write("Dispensed ", p.drkGray);
+                p.write("$" + dollarsRequested.ToString(), p.grn);
+                p.write("\n\rMachine Balance:", p.blue);
                 foreach (int amount in descendAmounts)
                 {
                     bill _bill = new bill();
                     _bill.dollarValue = amount;
-                    if (dollarsToWithdraw.Where(x => x.dollarValue == amount).Count() > 0)
+                    if (atmInventory.Where(x => x.dollarValue == amount).Count() > 0)
                     {
-                        p.write("\n\r" + "$" + amount.ToString() + " - " + dollarsToWithdraw.Where(x => x.dollarValue == amount).Count().ToString(), p.grn);
+                        p.write("\n\r" + "$" + amount.ToString(), p.grn);
+                        p.write(" - " + atmInventory.Where(x => x.dollarValue == amount).Count().ToString(), p.drkGray);
                     }
                 }
             }
@@ -133,6 +152,7 @@ namespace automatedTellerMachine
         }
         public void refillBills()
         {
+            p.write("\n\r" + "Machine Balance", p.blue);
             foreach(int amount in dollarAmounts)
             {
                 int billCount = atmInventory.Where(x => x.dollarValue == amount).Count();
@@ -142,6 +162,8 @@ namespace automatedTellerMachine
                 {
                     atmInventory.Add(newBill);
                 }
+                p.write("\n\r" + "$" + amount.ToString(), p.grn);
+                p.write(" - " + atmInventory.Where(x => x.dollarValue == amount).Count().ToString(), p.drkGray);
             }
         }
 
